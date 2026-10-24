@@ -1,7 +1,7 @@
 {
-  "name": "personalised-voice-ai-chat",
+  "name": "heyfriday",
   "version": "0.1.0",
-  "description": "Hands-free voice chat with an AI agent (DeepSeek Harness + OpenRouter), local speech recognition and a natural female voice.",
+  "description": "HeyFriday: a hands-free voice AI agent (wake word, natural voice, tools, browser control) on any OpenRouter model.",
   "type": "module",
   "private": true,
   "license": "MIT",
@@ -9,5 +9,21 @@
     "install:all": "./install.sh",
     "start": "node server/index.mjs"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sumedh1599/heyfriday.git"
+  },
+  "keywords": [
+    "voice-assistant",
+    "ai-agent",
+    "openrouter",
+    "whisper",
+    "kokoro",
+    "wake-word",
+    "jarvis",
+    "deepseek"
+  ]
 }

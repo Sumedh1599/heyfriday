@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Start Personalised Voice AI Chat: DeepSeek Harness runs in the background, the UI opens in your browser.
+# Start HeyFriday: DeepSeek Harness runs in the background, the UI opens in your browser.
 set -euo pipefail
 cd "$(dirname "$0")"
 PORT="${APP_PORT:-3080}"

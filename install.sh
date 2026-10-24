@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-time setup for Personalised Voice AI Chat on macOS. Safe to re-run.
+# One-time setup for HeyFriday on macOS. Safe to re-run.
 set -euo pipefail
 cd "$(dirname "$0")"
 command -v brew >/dev/null || { echo "Install Homebrew first: https://brew.sh"; exit 1; }

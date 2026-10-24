@@ -1,4 +1,4 @@
-// Personalised Voice AI Chat frontend: Rive background, wake-word / conversation voice loop, streamed speech, menu, model picker.
+// HeyFriday frontend: Rive background, wake-word / conversation voice loop, streamed speech, menu, model picker.
 const $ = (id) => document.getElementById(id)
 const api = (path, body) =>
   fetch(path, body === undefined ? {} : { method: 'POST', headers: { 'content-type': 'application/json', 'x-app': '1' }, body: JSON.stringify(body) })
