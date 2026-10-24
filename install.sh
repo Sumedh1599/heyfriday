@@ -10,8 +10,16 @@ command -v pnpm >/dev/null || npm i -g pnpm
 command -v uv >/dev/null || brew install uv
 
 # 1. DeepSeek Harness (MIT): the agent that runs in the background
-[ -d harness ] || git clone --depth 1 https://github.com/deepseek-ai/deepseek-harness.git harness
-(cd harness && pnpm install && pnpm run build)
+# Pinned to a commit known to build, so a newer upstream change cannot break your install.
+HARNESS_REF=22ddee3792402c3e70ec5f86a63c3e3e895a2f60
+if [ ! -d harness ]; then
+  git clone https://github.com/deepseek-ai/deepseek-harness.git harness
+  git -C harness checkout --quiet "$HARNESS_REF"
+fi
+# The build is incremental. If a parallel step fails (rare, seen on some machines), retry with less parallelism.
+(cd harness && pnpm install \
+  && { pnpm run build || { echo "Build failed, retrying with 2 workers..."; DSH_GATE_CONCURRENCY=2 pnpm run build; } \
+       || { echo "Retrying with 1 worker..."; DSH_GATE_CONCURRENCY=1 pnpm run build; }; })
 
 # 2. Speech to text: whisper.cpp (MIT) + English base model
 brew list whisper-cpp >/dev/null 2>&1 || brew install whisper-cpp
