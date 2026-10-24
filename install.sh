@@ -9,6 +9,10 @@ command -v node >/dev/null || brew install node
 command -v pnpm >/dev/null || npm i -g pnpm
 command -v uv >/dev/null || brew install uv
 
+# macOS paths are case-insensitive: running from ".../desktop/..." instead of ".../Desktop/..." breaks the build
+# ("Missing field `code`"). Re-enter the folder using its true on-disk case.
+cd "$(node -e "console.log(require('fs').realpathSync.native(process.argv[1]))" "$PWD" 2>/dev/null || pwd)"
+
 # 1. DeepSeek Harness (MIT): the agent that runs in the background
 # Pinned to a commit known to build, so a newer upstream change cannot break your install.
 HARNESS_REF=22ddee3792402c3e70ec5f86a63c3e3e895a2f60

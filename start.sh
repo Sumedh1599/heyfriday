@@ -2,6 +2,7 @@
 # Start HeyFriday: DeepSeek Harness runs in the background, the UI opens in your browser.
 set -euo pipefail
 cd "$(dirname "$0")"
+cd "$(node -e "console.log(require('fs').realpathSync.native(process.argv[1]))" "$PWD" 2>/dev/null || pwd)"
 # Clear the macOS "downloaded from the internet" flag on this folder (local files only).
 xattr -dr com.apple.quarantine . 2>/dev/null || true
 PORT="${APP_PORT:-3080}"
