@@ -55,3 +55,7 @@ Application code is MIT licensed (see [LICENSE](LICENSE)). `web/assets/animate.r
 ## Notice
 
 DeepSeek Harness is developer-preview software with no security audit. This project runs it in full-auto mode with unrestricted file and shell access; see the Safety section of the README.
+
+---
+
+HeyFriday is created by Sumedh Patil. © 2026 Aipresso Limited. MIT License. The third-party projects above are not made or maintained by us; use them under their own licenses and at your own risk.

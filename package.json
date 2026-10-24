@@ -1,7 +1,7 @@
 {
   "name": "heyfriday",
   "version": "0.1.0",
-  "description": "HeyFriday: a hands-free voice AI agent (wake word, natural voice, tools, browser control) on any OpenRouter model.",
+  "description": "HeyFriday: open-source Jarvis-style voice AI assistant for Mac. Wake word, natural voice, coding, browser control and subagents on any OpenRouter model.",
   "type": "module",
   "private": true,
   "license": "MIT",
@@ -17,13 +17,22 @@
     "url": "git+https://github.com/Sumedh1599/heyfriday.git"
   },
   "keywords": [
+    "jarvis",
+    "iron-man",
     "voice-assistant",
+    "ai-assistant",
     "ai-agent",
+    "voice-ai",
     "openrouter",
     "whisper",
     "kokoro",
     "wake-word",
-    "jarvis",
-    "deepseek"
-  ]
+    "deepseek",
+    "macos",
+    "hands-free",
+    "speech-to-text",
+    "text-to-speech",
+    "llm"
+  ],
+  "author": "Sumedh Patil (Aipresso Limited)"
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Start HeyFriday (double-click on macOS): DeepSeek Harness runs in the background, the UI opens in your browser.
+# Start HeyFriday: DeepSeek Harness runs in the background, the UI opens in your browser.
 set -euo pipefail
 cd "$(dirname "$0")"
 # Clear the macOS "downloaded from the internet" flag on this folder (local files only).

@@ -55,9 +55,9 @@ const ERRORS = [
   [/404|no endpoints|model.*(not found|unavailable)|not a valid model/i, 'That model is not available on OpenRouter.', 'Open the model picker and choose a different model.'],
   [/tool|function.?call/i, 'This model may not support tool calls, which the agent needs.', 'Pick a model marked as supporting tools in the picker.'],
   [/timeout|timed out|etimedout|econn|network|fetch failed|enotfound/i, 'The network request failed or timed out.', 'Check your internet connection and try again.'],
-  [/transport|exited|runtime is gone|initialize/i, 'The background harness stopped or failed to start.', 'Press “Stop current activity” in the menu, then try again. If it keeps happening, restart Launch.command.'],
-  [/whisper|stt|speech recognition/i, 'Speech recognition failed.', 'Restart Launch.command; make sure whisper-cpp is installed (brew install whisper-cpp).'],
-  [/tts|voice output|kokoro/i, 'Speech output failed.', 'Restart Launch.command and check the voice/venv folder exists.'],
+  [/transport|exited|runtime is gone|initialize/i, 'The background harness stopped or failed to start.', 'Press “Stop current activity” in the menu, then try again. If it keeps happening, restart HeyFriday.'],
+  [/whisper|stt|speech recognition/i, 'Speech recognition failed.', 'Restart HeyFriday; make sure whisper-cpp is installed (brew install whisper-cpp).'],
+  [/tts|voice output|kokoro/i, 'Speech output failed.', 'Restart HeyFriday and check the voice/venv folder exists.'],
   [/notallowed|permission denied|microphone|getusermedia/i, 'The microphone is blocked.', 'Allow microphone access for 127.0.0.1:3080 in your browser’s site settings and reload.'],
 ]
 function showError(problem, fix) {
@@ -69,7 +69,7 @@ function showError(problem, fix) {
 function explain(raw) {
   const hit = ERRORS.find(([re]) => re.test(raw))
   if (hit) showError(hit[1], hit[2])
-  else showError(`Something went wrong: ${String(raw).slice(0, 160)}`, 'Press “Stop current activity” in the menu and try again; if it repeats, restart Launch.command and check the terminal output.')
+  else showError(`Something went wrong: ${String(raw).slice(0, 160)}`, 'Press “Stop current activity” in the menu and try again; if it repeats, restart HeyFriday and check the terminal output.')
 }
 
 const cards = new Map()
@@ -158,7 +158,7 @@ function connectEvents() {
       case 'cleared': $('chat').replaceChildren(); $('cards').replaceChildren(); cards.clear(); bubble('user', 'Data cleared. Fresh session.', 3000); break
       case 'shutdown':
         es.close(); micStop(); $('statusDot').className = 'dot offline'; $('stateLabel').textContent = 'OFFLINE'
-        bubble('err', 'The app has shut down. Run Launch.command to start it again.')
+        bubble('err', 'The app has shut down. Open Launch HeyFriday to start it again.')
         break
     }
   }
@@ -595,4 +595,4 @@ async function init() {
     } catch (e) { explain(`microphone: ${e.name || ''} ${e.message}`) }
   }
 }
-init().catch((e) => { document.body.append(el('pre', 'msg err', `Failed to reach the app server: ${e.message}\nRun Launch.command from the project folder.`)) })
+init().catch((e) => { document.body.append(el('pre', 'msg err', `Failed to reach the app server: ${e.message}\nOpen Launch HeyFriday, or run ./start.sh from the project folder.`)) })

@@ -1,12 +1,15 @@
 <div align="center">
 
+<img src="docs/icon.png" alt="HeyFriday icon" width="96"><br>
 <img src="docs/snapshot.png" alt="HeyFriday: a hands-free voice AI agent with a living Rive animation" width="100%">
 
 # 🎙️ HeyFriday
 
-### Your personalised voice AI. Say "Friday", and it gets things done.
+### Your own Jarvis. Say "Friday", and it gets things done.
 
-**A hands-free, Jarvis-style voice agent that talks back in a natural voice, writes code, runs commands, browses the web and spawns subagents. Any model on OpenRouter. Speech recognition runs on your machine.**
+*Inspired by J.A.R.V.I.S. and F.R.I.D.A.Y., the AI assistants from Iron Man. An open-source, hands-free voice AI assistant for Mac.*
+
+**A hands-free, Jarvis-style voice AI assistant that talks back in a natural voice, writes code, runs commands, browses the web and spawns subagents. Any model on OpenRouter. Speech recognition runs on your machine.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Platform: macOS](https://img.shields.io/badge/platform-macOS-black.svg)
@@ -15,7 +18,7 @@
 ![Agent: DeepSeek Harness](https://img.shields.io/badge/agent-DeepSeek%20Harness-4d6bfe.svg)
 ![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
-[Quick start](#-quick-start) · [What it can do](#-what-it-can-do) · [How it works](#-how-it-works) · [FAQ](#-faq) · [Credits](CREDITS.md)
+[Quick start](#-quick-start) · [Use cases](#-use-cases) · [What it can do](#-what-it-can-do) · [How it works](#-how-it-works) · [FAQ](#-faq) · [Credits](CREDITS.md)
 
 **If this saves you from typing even once, [⭐ star the repo](https://github.com/Sumedh1599/heyfriday). It helps other people find it.**
 
@@ -45,17 +48,23 @@ cd heyfriday
 ./install.sh
 ```
 
-`install.sh` finishes by creating **HeyFriday.app** on your Desktop. Double-click it any time to start. Already installed? Run `cd heyfriday && ./make-app.sh` to (re)create it.
+Then, in the same Terminal, run the one-time launcher builder:
 
-No app click handy? `./Launch.command` in Terminal does the same.
+```sh
+./launch.sh
+```
+
+That creates **Launch HeyFriday** (an app with its own icon) on your Desktop. Double-click it any time to start HeyFriday. (`install.sh` already runs `launch.sh` at the end; run it again if you move the folder or delete the app.)
+
+Prefer the terminal? `./start.sh` starts the app directly.
 
 **Do not use "Download ZIP".** macOS flags every file in it and shows *"Apple could not verify ... is free of malware"*. HeyFriday is open source and unsigned (no paid Apple developer account). Files fetched with `git clone` are never flagged, so the commands above avoid the warning entirely.
 
 Already downloaded the ZIP? Open Terminal in the folder and run `xattr -dr com.apple.quarantine . && ./install.sh`. Or click *Done*, open **System Settings → Privacy & Security**, press **Open Anyway** next to the blocked file and confirm.
 
-You can read the scripts first: [`install.sh`](install.sh) and [`Launch.command`](Launch.command). They only set up tools and start the local server on `127.0.0.1`.
+You can read the scripts first: [`install.sh`](install.sh), [`launch.sh`](launch.sh) and [`start.sh`](start.sh). They only set up tools and start the local server on `127.0.0.1`.
 
-`install.sh` runs once (about 1.5 GB: agent, speech models, browser). `HeyFriday.app` (or `./Launch.command`) opens **http://127.0.0.1:3080**.
+`install.sh` runs once (about 1.5 GB: agent, speech models, browser). **Launch HeyFriday** (or `./start.sh`) opens **http://127.0.0.1:3080**.
 
 Then in the app:
 
@@ -63,6 +72,16 @@ Then in the app:
 2. Open the ☰ menu (top right), paste your OpenRouter key, press **Save**.
 3. Pick a model.
 4. Say **"Friday, what's two plus two?"** and pause.
+
+## 💡 Use cases
+
+- **Hands-free coding assistant.** Dictate scripts, refactors and bug fixes while your hands are busy.
+- **Voice-controlled browser.** Research, fill forms, check sites and read pages back to you.
+- **Research with parallel agents.** Compare tools, summarise sources and draft notes while you keep talking.
+- **Desktop automation.** Rename files, run commands, organise folders by voice.
+- **Accessibility.** A voice-first way to use a computer without a keyboard.
+- **Code understanding.** Ask questions about a project via a local code knowledge graph.
+- **Your own Jarvis.** A private, customisable assistant on the model you choose, with your own wake word.
 
 ## 🧰 What it can do
 
@@ -94,7 +113,7 @@ Try saying:
 
 The server also acts as a small OpenRouter proxy that caps parallel requests and retries rate limits, so a swarm of subagents does not get your key blocked.
 
-## 🛡️ Safety (read this)
+## 🛡️ Safety and responsibility (read this)
 
 > **HeyFriday runs the agent in full-auto mode with unrestricted file and shell access and no approval prompts.** [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) is developer-preview software with no security audit. Use a dedicated machine or account and keep backups.
 
@@ -107,7 +126,7 @@ The server listens on `127.0.0.1` only and rejects foreign hosts and requests wi
 | Nothing happens when I talk | Allow the microphone for `127.0.0.1:3080`; check the wake word in the menu |
 | Slow replies or failing tools | Use a stronger model; small ones (e.g. `gpt-oss-20b`) call tools badly |
 | 401 or "no credits" | Check your key and balance at [openrouter.ai](https://openrouter.ai) |
-| Port 3080 in use | `APP_PORT=3090 ./Launch.command` |
+| Port 3080 in use | `APP_PORT=3090 ./start.sh` |
 
 Variables: `APP_PORT`, `APP_NO_OPEN=1`, `APP_DEBUG=1`. Errors also appear on screen with a plain-language fix.
 
@@ -131,6 +150,12 @@ Variables: `APP_PORT`, `APP_NO_OPEN=1`, `APP_DEBUG=1`. Errors also appear on scr
 - [ ] Optional approval mode instead of full-auto
 - [ ] Packaged app (no terminal)
 
+## ⚠️ Disclaimer
+
+HeyFriday is an independent open-source project. It is **not** affiliated with, endorsed by or sponsored by Marvel, Disney, DeepSeek, OpenRouter or any other third party. "Jarvis", "F.R.I.D.A.Y." and "Iron Man" are trademarks of their respective owners and are mentioned only as inspiration.
+
+Components such as DeepSeek Harness, OpenRouter, whisper.cpp, Kokoro, agent-browser and graphify belong to their authors and are **not made, maintained or guaranteed by us**. You install and use them at your own risk, under their own licenses and terms. You are responsible for your API keys and costs, what the agent does on your machine, and the content you send to the model you choose. The software is provided "as is" without warranty (see [LICENSE](LICENSE)).
+
 ## 🤝 Contributing
 
 Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -146,5 +171,11 @@ Standing on the shoulders of **OpenRouter, DeepSeek Harness, whisper.cpp, Kokoro
 <div align="center">
 
 **Built something cool with it? Open an issue and show it off. ⭐ Star if you like it.**
+
+---
+
+Created by **[Sumedh Patil](https://github.com/Sumedh1599)** · © 2026 **Aipresso Limited** · Released under the [MIT License](LICENSE)
+
+<sub>Keywords: Jarvis AI assistant, Iron Man Jarvis, Friday AI, voice assistant for Mac, open source voice AI, hands-free AI agent, wake word, OpenRouter, Whisper, Kokoro TTS, DeepSeek Harness.</sub>
 
 </div>
