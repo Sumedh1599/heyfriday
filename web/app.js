@@ -595,4 +595,4 @@ async function init() {
     } catch (e) { explain(`microphone: ${e.name || ''} ${e.message}`) }
   }
 }
-init().catch((e) => { document.body.append(el('pre', 'msg err', `Failed to reach the app server: ${e.message}\nOpen Launch HeyFriday, or run ./start.sh from the project folder.`)) })
+init().catch((e) => { document.body.append(el('pre', 'msg err', `Failed to reach the app server: ${e.message}\nOpen Launch HeyFriday, or run ./launch.sh from the project folder.`)) })

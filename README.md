@@ -48,23 +48,21 @@ cd heyfriday
 ./install.sh
 ```
 
-Then, in the same Terminal, run the one-time launcher builder:
+Then start it (CLI server plus the web app in Chrome):
 
 ```sh
 ./launch.sh
 ```
 
-That creates **Launch HeyFriday** (an app with its own icon) on your Desktop. Double-click it any time to start HeyFriday. (`install.sh` already runs `launch.sh` at the end; run it again if you move the folder or delete the app.)
-
-Prefer the terminal? `./start.sh` starts the app directly.
+That runs the local server in your Terminal and opens **http://127.0.0.1:3080** in Chrome. The first run also creates **Launch HeyFriday** (an app with its own icon) on your Desktop; double-click it any time to open a Terminal with HeyFriday running. Press `Ctrl+C` in the Terminal to stop.
 
 **Do not use "Download ZIP".** macOS flags every file in it and shows *"Apple could not verify ... is free of malware"*. HeyFriday is open source and unsigned (no paid Apple developer account). Files fetched with `git clone` are never flagged, so the commands above avoid the warning entirely.
 
 Already downloaded the ZIP? Open Terminal in the folder and run `xattr -dr com.apple.quarantine . && ./install.sh`. Or click *Done*, open **System Settings → Privacy & Security**, press **Open Anyway** next to the blocked file and confirm.
 
-You can read the scripts first: [`install.sh`](install.sh), [`launch.sh`](launch.sh) and [`start.sh`](start.sh). They only set up tools and start the local server on `127.0.0.1`.
+You can read the scripts first: [`install.sh`](install.sh) and [`launch.sh`](launch.sh). They only set up tools and start the local server on `127.0.0.1`.
 
-`install.sh` runs once (about 1.5 GB: agent, speech models, browser). **Launch HeyFriday** (or `./start.sh`) opens **http://127.0.0.1:3080**.
+`install.sh` runs once (about 1.5 GB: agent, speech models, browser). `./launch.sh` (or the **Launch HeyFriday** app) opens **http://127.0.0.1:3080**.
 
 Then in the app:
 
@@ -126,7 +124,7 @@ The server listens on `127.0.0.1` only and rejects foreign hosts and requests wi
 | Nothing happens when I talk | Allow the microphone for `127.0.0.1:3080`; check the wake word in the menu |
 | Slow replies or failing tools | Use a stronger model; small ones (e.g. `gpt-oss-20b`) call tools badly |
 | 401 or "no credits" | Check your key and balance at [openrouter.ai](https://openrouter.ai) |
-| Port 3080 in use | `APP_PORT=3090 ./start.sh` |
+| Port 3080 in use | `APP_PORT=3090 ./launch.sh` |
 
 Variables: `APP_PORT`, `APP_NO_OPEN=1`, `APP_DEBUG=1`. Errors also appear on screen with a plain-language fix.
 
