@@ -2,6 +2,8 @@
 # One-time setup for HeyFriday on macOS. Safe to re-run.
 set -euo pipefail
 cd "$(dirname "$0")"
+# Downloaded ZIPs are flagged by macOS Gatekeeper; clear it for this folder so launching works.
+xattr -dr com.apple.quarantine . 2>/dev/null || true
 command -v brew >/dev/null || { echo "Install Homebrew first: https://brew.sh"; exit 1; }
 command -v node >/dev/null || brew install node
 command -v pnpm >/dev/null || npm i -g pnpm
@@ -32,4 +34,4 @@ agent-browser install
 command -v graphify >/dev/null || uv tool install graphifyy
 
 echo
-echo "Done. Start the app with:  ./Launch\\ app"
+echo "Done. Start the app with:  ./Launch.command  (or double-click it)"

@@ -43,10 +43,18 @@ You need **macOS**, [Homebrew](https://brew.sh), **Node.js 22+** and an [OpenRou
 git clone https://github.com/Sumedh1599/heyfriday.git
 cd heyfriday
 ./install.sh
-./Launch\ app
+./Launch.command
 ```
 
-`install.sh` runs once (about 1.5 GB: agent, speech models, browser). `Launch app` opens **http://127.0.0.1:3080**.
+**Downloaded the ZIP instead of cloning?** macOS flags it and shows *"Apple could not verify 'Launch app' is free of malware"*. HeyFriday is open source and unsigned (no paid Apple developer account), so this is expected. Pick one:
+
+- **Easiest:** use `git clone` as above. Cloned files are never blocked.
+- **Terminal:** `cd` into the folder and run `xattr -dr com.apple.quarantine . && ./install.sh`
+- **Clicks only:** click *Done*, open **System Settings → Privacy & Security**, scroll down and press **Open Anyway** next to the blocked file, then confirm. (Right-click → Open also works on `Launch.command`.)
+
+You can read every script first: [`install.sh`](install.sh), [`Launch app`](Launch%20app), [`Launch.command`](Launch.command). They only start the local server and open `127.0.0.1`.
+
+`install.sh` runs once (about 1.5 GB: agent, speech models, browser). `Launch.command` (double-click it) opens **http://127.0.0.1:3080**.
 
 Then in the app:
 
@@ -98,7 +106,7 @@ The server listens on `127.0.0.1` only and rejects foreign hosts and requests wi
 | Nothing happens when I talk | Allow the microphone for `127.0.0.1:3080`; check the wake word in the menu |
 | Slow replies or failing tools | Use a stronger model; small ones (e.g. `gpt-oss-20b`) call tools badly |
 | 401 or "no credits" | Check your key and balance at [openrouter.ai](https://openrouter.ai) |
-| Port 3080 in use | `APP_PORT=3090 ./Launch\ app` |
+| Port 3080 in use | `APP_PORT=3090 ./Launch.command` |
 
 Variables: `APP_PORT`, `APP_NO_OPEN=1`, `APP_DEBUG=1`. Errors also appear on screen with a plain-language fix.
 
