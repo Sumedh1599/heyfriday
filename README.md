@@ -46,13 +46,11 @@ cd heyfriday
 ./Launch.command
 ```
 
-**Downloaded the ZIP instead of cloning?** macOS flags it and shows *"Apple could not verify 'Launch app' is free of malware"*. HeyFriday is open source and unsigned (no paid Apple developer account), so this is expected. Pick one:
+**Do not use "Download ZIP".** macOS flags every file in it and shows *"Apple could not verify ... is free of malware"*. HeyFriday is open source and unsigned (no paid Apple developer account). Files fetched with `git clone` are never flagged, so the commands above avoid the warning entirely.
 
-- **Easiest:** use `git clone` as above. Cloned files are never blocked.
-- **Terminal:** `cd` into the folder and run `xattr -dr com.apple.quarantine . && ./install.sh`
-- **Clicks only:** click *Done*, open **System Settings → Privacy & Security**, scroll down and press **Open Anyway** next to the blocked file, then confirm. (Right-click → Open also works on `Launch.command`.)
+Already downloaded the ZIP? Open Terminal in the folder and run `xattr -dr com.apple.quarantine . && ./install.sh`. Or click *Done*, open **System Settings → Privacy & Security**, press **Open Anyway** next to the blocked file and confirm.
 
-You can read every script first: [`install.sh`](install.sh), [`Launch app`](Launch%20app), [`Launch.command`](Launch.command). They only start the local server and open `127.0.0.1`.
+You can read the scripts first: [`install.sh`](install.sh) and [`Launch.command`](Launch.command). They only set up tools and start the local server on `127.0.0.1`.
 
 `install.sh` runs once (about 1.5 GB: agent, speech models, browser). `Launch.command` (double-click it) opens **http://127.0.0.1:3080**.
 
