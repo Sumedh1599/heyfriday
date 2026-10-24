@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personalised Voice AI Chat</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="vignette"></div>
+
+<header class="topbar">
+  <div class="brand"><span class="dot" id="statusDot"></span><span id="brandName">FRIDAY</span><small id="modelLabel">—</small></div>
+  <button id="menuBtn" class="icon-btn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main class="stage">
+  <div id="stateLabel" class="state-label">STANDBY</div>
+</main>
+
+<div id="cards" class="cards" aria-live="polite"></div>
+<section id="history" class="panel right" hidden aria-label="Conversation"><h3>CHAT</h3><div id="chat" class="scroll"></div></section>
+<div id="float" class="float" aria-live="polite"></div>
+
+<form id="typeForm" class="typebar" autocomplete="off" hidden>
+  <input id="typeInput" placeholder="Type a message…" />
+  <button type="submit">SEND</button>
+</form>
+
+<div id="activate" class="activate"><button id="activateBtn">START VOICE CHAT</button><p>Click to enable microphone and voice</p></div>
+
+<aside id="menu" class="menu" hidden>
+  <h2>SYSTEM</h2>
+
+  <label class="field">OpenRouter API key
+    <div class="row">
+      <input id="keyInput" type="password" placeholder="sk-or-v1-…" autocomplete="off" spellcheck="false">
+      <button id="keySave">Save</button>
+    </div>
+    <small id="keyHint"></small>
+  </label>
+
+  <button id="modelBtn" class="wide">Select model <span id="modelBtnLabel"></span></button>
+
+  <h3>Interface</h3>
+  <label class="toggle"><input id="showChat" type="checkbox"> Chat panel &amp; text input</label>
+  <label class="toggle"><input id="bargeIn" type="checkbox"> Interrupt replies by speaking</label>
+  <label class="toggle"><input id="alwaysOn" type="checkbox"> Conversation mode (no wake word)</label>
+
+  <h3>Voice agent</h3>
+  <label class="field">Speech speed <output id="speedOut">1.0×</output>
+    <input id="speed" type="range" min="0.6" max="1.8" step="0.05" value="1">
+  </label>
+  <label class="field">Auto-send after pause <output id="pauseOut">1.5 s</output>
+    <input id="pause" type="range" min="0.8" max="60" step="0.2" value="1.5">
+  </label>
+  <label class="field">Wake word (shown on top) <input id="wakeWord" spellcheck="false"></label>
+  <label class="field">Send trigger word (optional, sends instantly) <input id="sendWord" spellcheck="false"></label>
+  <button id="voiceSave" class="wide">Save voice settings</button>
+
+  <h3>Control</h3>
+  <button id="stopBtn" class="wide">Stop current activity</button>
+  <button id="clearBtn" class="wide">Clear data (conversation &amp; history)</button>
+  <button id="shutdownBtn" class="wide danger">Shutdown</button>
+
+  <p class="credits">Built on <a href="https://openrouter.ai" target="_blank" rel="noreferrer">OpenRouter</a> and <a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noreferrer">DeepSeek Harness</a> (MIT). Voice: <a href="https://github.com/ggml-org/whisper.cpp" target="_blank" rel="noreferrer">whisper.cpp</a>, <a href="https://huggingface.co/hexgrad/Kokoro-82M" target="_blank" rel="noreferrer">Kokoro</a>. Also <a href="https://github.com/vercel-labs/agent-browser" target="_blank" rel="noreferrer">agent-browser</a>, <a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noreferrer">graphify</a>, <a href="https://rive.app" target="_blank" rel="noreferrer">Rive</a>, <a href="https://mermaid.js.org" target="_blank" rel="noreferrer">Mermaid</a>. Licenses: CREDITS.md</p>
+</aside>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-card" role="dialog" aria-label="Select model">
+    <div class="modal-head">
+      <h2>MODELS</h2>
+      <button id="modalClose" class="icon-btn small" aria-label="Close">✕</button>
+    </div>
+    <div class="tabs"><button id="tabFav" class="active">Favourites</button><button id="tabAll">All OpenRouter</button></div>
+    <input id="modelSearch" placeholder="Search models…" spellcheck="false">
+    <div id="modelList" class="model-list"></div>
+  </div>
+</div>
+
+<script src="/vendor/rive.js"></script>
+<script src="/vendor/mermaid.min.js"></script>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

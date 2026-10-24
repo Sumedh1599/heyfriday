@@ -1,0 +1,10 @@
+# local state and secrets (API key lives in memory/settings.json)
+memory/
+# downloaded / generated
+harness/
+voice/venv/
+voice/models/
+node_modules/
+chims-re/
+.DS_Store
+*.log

@@ -1,0 +1,13 @@
+{
+  "name": "personalised-voice-ai-chat",
+  "version": "0.1.0",
+  "description": "Hands-free voice chat with an AI agent (DeepSeek Harness + OpenRouter), local speech recognition and a natural female voice.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "install:all": "./install.sh",
+    "start": "node server/index.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
