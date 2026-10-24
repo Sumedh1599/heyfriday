@@ -34,4 +34,5 @@ agent-browser install
 command -v graphify >/dev/null || uv tool install graphifyy
 
 echo
-echo "Done. Start the app with:  ./Launch.command  (or double-click it)"
+./make-app.sh
+echo "Done. Double-click HeyFriday on your Desktop to start."

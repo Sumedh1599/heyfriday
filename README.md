@@ -43,8 +43,11 @@ You need **macOS**, [Homebrew](https://brew.sh), **Node.js 22+** and an [OpenRou
 git clone https://github.com/Sumedh1599/heyfriday.git
 cd heyfriday
 ./install.sh
-./Launch.command
 ```
+
+`install.sh` finishes by creating **HeyFriday.app** on your Desktop. Double-click it any time to start. Already installed? Run `cd heyfriday && ./make-app.sh` to (re)create it.
+
+No app click handy? `./Launch.command` in Terminal does the same.
 
 **Do not use "Download ZIP".** macOS flags every file in it and shows *"Apple could not verify ... is free of malware"*. HeyFriday is open source and unsigned (no paid Apple developer account). Files fetched with `git clone` are never flagged, so the commands above avoid the warning entirely.
 
@@ -52,7 +55,7 @@ Already downloaded the ZIP? Open Terminal in the folder and run `xattr -dr com.a
 
 You can read the scripts first: [`install.sh`](install.sh) and [`Launch.command`](Launch.command). They only set up tools and start the local server on `127.0.0.1`.
 
-`install.sh` runs once (about 1.5 GB: agent, speech models, browser). `Launch.command` (double-click it) opens **http://127.0.0.1:3080**.
+`install.sh` runs once (about 1.5 GB: agent, speech models, browser). `HeyFriday.app` (or `./Launch.command`) opens **http://127.0.0.1:3080**.
 
 Then in the app:
 
